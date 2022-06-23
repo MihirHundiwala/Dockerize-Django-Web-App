@@ -26,7 +26,7 @@ pipeline {
                 bat """
                 pip install -r requirements.txt
                 cd src
-                python manage.py make migrations
+                python manage.py makemigrations
                 python manage.py migrate
                 python manage.py collectstatic
                 """
