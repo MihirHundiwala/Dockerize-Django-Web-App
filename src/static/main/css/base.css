@@ -1,0 +1,8 @@
+html{
+	scroll-behavior: smooth;
+}
+
+.nav-link{
+	color:white !important;
+	font-size:23px;
+}

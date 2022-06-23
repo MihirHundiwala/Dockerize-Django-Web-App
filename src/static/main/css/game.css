@@ -1,0 +1,65 @@
+html{
+	scroll-behavior: smooth;
+}
+
+body{
+	background:#121212 !important;
+	color:#dadada !important;
+}
+
+.nav-link{
+	color:white !important;
+	font-size:23px;
+}
+
+#gameison{
+	margin-top: 10vh;
+}
+
+#gameison h1{
+	width: 65%;
+	font-size:40px;
+	padding:30px 30px 40px 5px;
+}
+
+#gameison hr{
+	background: white;
+	width: 64.5%;
+}
+
+.game{
+	width:80%;
+	min-height:60vh;
+	margin: 0 auto 10vh;
+	justify-content: space-evenly;
+}
+
+.img-div{
+	width:20%;
+	min-width: 150px;
+}
+
+.game-img{
+	width: 100%;
+	border: 1px solid white;
+}
+
+.game-about{
+	min-height: 200px;
+}
+
+.game-about p{
+	font-size:1.2em;
+}
+
+.game-about a{
+	width: 300px;
+}
+
+.register-btn{
+	width: 300px;
+	height
+}
+.register-btn span{
+	margin:0 0 0 8px;
+}

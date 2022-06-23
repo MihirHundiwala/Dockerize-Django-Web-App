@@ -1,0 +1,74 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} Game On {% endblock %}
+
+{% block styling %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class='head-div'>
+		<h1 class='head1'>Blast Your</h1>
+		<h1 class='head2'>Way</h1>
+		<h1 class='head3'>To TheTop</h1>
+		<button class="btn btn-light btn-lg btn-responsive" id='viewgames' onclick="window.location='#gameison'">View Games</button>
+	</div>
+
+	<div class='cover'></div>
+
+	<div class="text-white" id="gameison">
+		<h1 class="text-center p-5" id="gameison_heading">Game is On.</h1>
+		<hr class="w-50 m-auto" style="background:white">
+	</div>
+
+	<div class='game-container d-flex justify-content-around flex-wrap'>
+		{% for Game in Games %}
+		<a href="{% url 'main:gamepage' game=Game.shortname %}">
+			<img class='game-img border' title='{{Game.title}}' src="{% static 'main/images/' %}{{Game.imagefile}}" alt='{{Game.title}}'/>
+		</a>
+		{% endfor %}
+	</div>
+
+	<div class="form-div">
+		<div style='background:black;text-align:center;'>
+			<h3> Request for a game</h3>
+			<p>Fill the form below in order to request for a game 
+			and its tournaments that you would want us to add to our website.</p>
+			<br>
+		</div>
+		<form action="/" method="post" id='requestform'>
+		    {% csrf_token %}
+		    {{ form.non_field_errors }}
+			<div class="fieldWrapper">
+			    <label for="{{ form.username.id_for_label }}">Name:</label>
+			    {{ form.username.errors }}
+			    {{ form.username }}
+			    <hr>
+			</div>
+			<div class="fieldWrapper">
+			    <label for="{{ form.email.id_for_label }}">Email:</label>
+			    {{ form.email.errors }}
+			    {{ form.email }}
+			    <hr>
+			</div>
+			<div class="fieldWrapper">
+			    <label for="{{ form.gametitle.id_for_label }}">Game Title:</label>
+			    {{ form.gametitle.errors }}
+			    {{ form.gametitle }}
+			    <hr>
+			</div>
+			<div class="fieldWrapper">
+			    <label for="{{ form.officialsite.id_for_label }}">Official Site Url:</label>
+			    {{ form.officialsite.errors }}
+			    {{ form.officialsite }}
+			    <hr>
+			</div>
+		    <input type="submit" value="Submit">
+		</form>
+	</div>
+{% endblock %}
+
+{% block plugins %}
+	<script src="{% static 'main/js/script.js' %}"></script>
+{% endblock %}
