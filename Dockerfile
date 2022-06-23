@@ -24,4 +24,4 @@ RUN chmod +x start-server.sh
 #start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["./start-server.sh"]
+CMD ["./django-app/start-server.sh"]
