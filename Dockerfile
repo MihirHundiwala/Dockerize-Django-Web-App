@@ -20,4 +20,4 @@ RUN chown -R www-data:www-data /home/app
 # start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["tail", "-f", "/dev/null"]
+CMD ["bash", "/home/app/start-server.sh"]
