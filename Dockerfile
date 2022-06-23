@@ -8,20 +8,18 @@ COPY nginx.default /etc/nginx/sites-available/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+RUN mkdir -p /django-app
 RUN mkdir -p /django-app/src
 
-COPY src /django-app/src
+COPY ./src/* /django-app/src
 COPY requirements.txt start-server.sh /django-app/
 
 WORKDIR /django-app
-
 RUN pip install -r requirements.txt
-
-RUN chown -R www-data:www-data /django-app/src
-
 RUN chmod +x start-server.sh
+RUN chown -R www-data:www-data /django-app/src
 
 #start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["./django-app/start-server.sh"]
+CMD ["/bin/sh", "./django-app/start-server.sh"]
