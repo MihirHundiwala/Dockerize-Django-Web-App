@@ -22,4 +22,4 @@ RUN chown -R www-data:www-data /django-app/src
 #start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["/bin/sh", "./django-app/start-server.sh"]
+CMD ["./django-app/start-server.sh"]
