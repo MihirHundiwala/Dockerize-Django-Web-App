@@ -12,7 +12,6 @@ pipeline {
                 )
                 cd env\\Scripts
                 activate
-                cd ..\\..
                 '''
             }
         }
@@ -28,32 +27,43 @@ pipeline {
                 cd src
                 python manage.py makemigrations
                 python manage.py migrate
-                python manage.py collectstatic
+                python manage.py collectstatic -c --no-input
                 """
             }
         }
         stage('Checklist') {
             steps {
-                bat 'python manage.py check --deploy'
+                bat '''
+                cd src
+                python manage.py check --deploy
+                '''
             }
         }
         stage('Style Check') {
             steps {
-                bat 'flake8 main --max-line-length=127'
+                bat '''
+                cd src
+                flake8 main --max-line-length=127
+                '''
             }
         }
         stage('Docker Build Image') {
             steps {
                 bat '''
-                cd ..
-                docker build -t django-app-gameison .
-                docker image prune --filter="dangling=true"
+                docker build -t mihirhundiwala/django-app-gameison .
+                docker image prune --filter="dangling=true" --force
                 '''
             }
         }
         stage('Push image to registry') {
             steps {
-                bat 'docker image push django-app-gameison'
+                withCredentials([usernamePassword( credentialsId: 'dockerhub-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                    bat '''
+                    docker login -u %USER% -p %PASSWORD%
+                    docker push mihirhundiwala/django-app-gameison
+                    docker logout
+                    '''
+                }
             }
         }
     }
