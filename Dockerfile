@@ -19,7 +19,7 @@ RUN pip install -r requirements.txt
 
 RUN chown -R www-data:www-data /django-app/src
 
-RUN ls -r
+RUN chmod +x start-server.sh
 
 #start server
 EXPOSE 8020
