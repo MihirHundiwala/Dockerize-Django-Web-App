@@ -24,4 +24,4 @@ RUN ls -r
 #start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["django-app/start-server.sh"]
+CMD ["./start-server.sh"]
