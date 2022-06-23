@@ -19,7 +19,9 @@ RUN pip install -r requirements.txt
 
 RUN chown -R www-data:www-data /django-app/src
 
+RUN ls -r
+
 #start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["./start-server.sh"]
+CMD ["/django-app/start-server.sh"]
