@@ -14,12 +14,19 @@ RUN mkdir -p /django-app/src
 COPY requirements.txt start-server.sh /django-app/
 COPY src /django-app/src/
 
+RUN ls -r
+
 WORKDIR /django-app
 
 RUN pip install -r requirements.txt
 
 RUN chmod +x start-server.sh
 RUN chown -R www-data:www-data /django-app
+
+RUN ls-r
+
+WORKDIR /django-app/src
+RUN ls -r
 
 #start server
 EXPOSE 8020
