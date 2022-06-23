@@ -10,12 +10,15 @@ pipeline {
                 ) else (
                   python -m venv env
                 )
+                cd env\\Scripts
+                activate
+                cd ..\\..
                 '''
             }
         }
         stage('SCM Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/MihirHundiwala/gameison.git'
+                git branch: 'main', url: 'https://github.com/MihirHundiwala/Dockerize-Django-Web-App.git'
             }
         }
         stage('Build') {
