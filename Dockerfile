@@ -6,18 +6,18 @@ COPY nginx.default /etc/nginx/sites-available/default
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN mkdir -p /opt/app
-RUN mkdir -p /opt/app/src
+RUN mkdir -p /home/app
+RUN mkdir -p /home/app/src
 
-COPY requirements.txt start-server.sh /opt/app/
-COPY src /opt/app/src/
+COPY requirements.txt start-server.sh /home/app/
+COPY src /home/app/src/
 
-WORKDIR /opt/app
+WORKDIR /home/app
 
 RUN pip install -r requirements.txt
-RUN chown -R www-data:www-data /opt/app
+RUN chown -R www-data:www-data /home/app
 
 # start server
 EXPOSE 8020
 STOPSIGNAL SIGTERM
-CMD ["./opt/app/start-server.sh"]
+CMD ["./home/app/start-server.sh"]
