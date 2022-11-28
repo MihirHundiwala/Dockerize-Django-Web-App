@@ -1,4 +1,4 @@
-### In this project, we use Jenkins pipeline to build a static django website, check project status for deployment, style check it using python library flake8 and dockerize the django web app, and finally deploy it on localhost.
+### In this project, we use Jenkins pipeline to build a static django website, check project status for deployment, style check it using python library flake8 and dockerize the django web app, and finally push it to docker repository.
 
 #### What is Docker?
 <li>Docker is a tool for building, shipping and running distributed applications.</li>
